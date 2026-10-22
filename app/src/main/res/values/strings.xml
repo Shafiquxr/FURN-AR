@@ -1,0 +1,63 @@
+<resources>
+    <string name="app_name">Spatial Shopping AI</string>
+    <string name="app_tagline">Elegant &amp; Modern Furniture For Your Dream Home</string>
+    <string name="search_hint">Search furniture, chairs, tables…</string>
+    
+    <!-- Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_categories">Categories</string>
+    <string name="nav_favorites">Favorites</string>
+    <string name="nav_cart">Cart</string>
+    <string name="nav_profile">Profile</string>
+    
+    <!-- Product -->
+    <string name="view_in_room">View in My Room</string>
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="buy_now">Buy Now</string>
+    <string name="view_all">View All</string>
+    <string name="best_selling">Best Selling Items</string>
+    <string name="popular_collections">Popular Collections</string>
+    <string name="best_deals">Best Deals on Modern Chairs</string>
+    <string name="deals_subtitle">Upgrade your space with stylish &amp; comfortable chairs.</string>
+    <string name="read_more">Read More</string>
+    <string name="description">Description</string>
+    <string name="reviews">Reviews</string>
+    <string name="width_label">Width</string>
+    <string name="depth_label">Depth</string>
+    <string name="height_label">Height</string>
+    <string name="color_label">Color</string>
+    <string name="off_label">OFF</string>
+    
+    <!-- AR -->
+    <string name="ar_mode">AR</string>
+    <string name="model_3d">3D</string>
+    <string name="move_label">Move</string>
+    <string name="rotate_label">Rotate</string>
+    <string name="scale_label">Scale</string>
+    <string name="scan_surface">Move your phone slowly to detect surfaces</string>
+    <string name="surface_detected">Surface detected! Tap to place</string>
+    <string name="tracking_lost">Tracking lost. Move slowly to recover.</string>
+    <string name="ar_not_supported">AR is not supported on this device</string>
+    <string name="camera_permission_required">Camera permission is required for AR experience</string>
+    
+    <!-- Fit Analysis -->
+    <string name="fit_status_fits">Fits Perfectly</string>
+    <string name="fit_status_restricted">Fits with Restrictions</string>
+    <string name="fit_status_no_fit">Does Not Fit</string>
+    <string name="fit_status_unknown">Insufficient Data</string>
+    <string name="scan_more">Scan more of the room</string>
+    
+    <!-- Categories -->
+    <string name="cat_living_room">Living Room</string>
+    <string name="cat_bedroom">Bedroom</string>
+    <string name="cat_dining_kitchen">Dining &amp; Kitchen</string>
+    <string name="cat_office">Office</string>
+    
+    <!-- Saved Designs -->
+    <string name="saved_designs">Saved Designs</string>
+    <string name="save_design">Save Design</string>
+    <string name="design_name_hint">Enter design name</string>
+    
+    <!-- Currency -->
+    <string name="currency_symbol">₹</string>
+</resources>
