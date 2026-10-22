@@ -307,7 +307,6 @@ fun ARStudioScreen(
                         viewModel.addToCart()
                     }
                 },
-                onColorSelected = { viewModel.selectColor(it) },
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .padding(16.dp)
@@ -397,14 +396,21 @@ private fun ARViewport(
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Box {
-                        AsyncImage(
-                            model = uiState.additionalProduct.images.firstOrNull(),
-                            contentDescription = uiState.additionalProduct.name,
-                            modifier = Modifier
-                                .size(170.dp)
-                                .clip(RoundedCornerShape(14.dp))
-                        )
+                    Box(modifier = Modifier.size(170.dp), contentAlignment = Alignment.Center) {
+                        if (!uiState.additionalProduct.modelUrl.isNullOrEmpty()) {
+                            Model3DViewer(
+                                modelPath = uiState.additionalProduct.modelUrl,
+                                modifier = Modifier.fillMaxSize()
+                            )
+                        } else {
+                            AsyncImage(
+                                model = uiState.additionalProduct.images.firstOrNull(),
+                                contentDescription = uiState.additionalProduct.name,
+                                modifier = Modifier
+                                    .size(170.dp)
+                                    .clip(RoundedCornerShape(14.dp))
+                            )
+                        }
 
                         // Remove badge button
                         IconButton(
@@ -480,18 +486,28 @@ private fun ARViewport(
                 ) {
                     Card(
                         shape = RoundedCornerShape(20.dp),
-                        colors = CardDefaults.cardColors(containerColor = Color.Black.copy(alpha = 0.35f)),
+                        colors = CardDefaults.cardColors(containerColor = Color.Black.copy(alpha = 0.25f)),
                         border = androidx.compose.foundation.BorderStroke(1.5.dp, SpatialColors.Primary.copy(alpha = 0.8f)),
                         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
                     ) {
-                        Box {
-                            AsyncImage(
-                                model = uiState.product.images.firstOrNull(),
-                                contentDescription = uiState.product.name,
-                                modifier = Modifier
-                                    .size(240.dp)
-                                    .clip(RoundedCornerShape(20.dp))
-                            )
+                        Box(
+                            modifier = Modifier.size(260.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            if (!uiState.product.modelUrl.isNullOrEmpty()) {
+                                Model3DViewer(
+                                    modelPath = uiState.product.modelUrl,
+                                    modifier = Modifier.fillMaxSize()
+                                )
+                            } else {
+                                AsyncImage(
+                                    model = uiState.product.images.firstOrNull(),
+                                    contentDescription = uiState.product.name,
+                                    modifier = Modifier
+                                        .size(240.dp)
+                                        .clip(RoundedCornerShape(20.dp))
+                                )
+                            }
 
                             // 3D Model Asset Badge overlay
                             Surface(
@@ -946,40 +962,12 @@ private fun ARBottomControls(
     onSaveDesignClick: () -> Unit,
     onAddFurnitureClick: () -> Unit,
     onAddToCart: () -> Unit,
-    onColorSelected: (com.spatialshop.ai.domain.model.ProductColor) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
         modifier = modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // Color Variant Swatches
-        uiState.product?.let { prod ->
-            if (prod.colors.isNotEmpty()) {
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(10.dp),
-                    modifier = Modifier
-                        .background(Color.Black.copy(alpha = 0.65f), RoundedCornerShape(24.dp))
-                        .padding(horizontal = 14.dp, vertical = 8.dp)
-                ) {
-                    prod.colors.forEach { color ->
-                        val isSelected = uiState.selectedColor?.hexCode == color.hexCode
-                        Box(
-                            modifier = Modifier
-                                .size(24.dp)
-                                .clip(CircleShape)
-                                .background(Color(android.graphics.Color.parseColor(color.hexCode)))
-                                .then(
-                                    if (isSelected) Modifier.border(2.dp, Color.White, CircleShape)
-                                    else Modifier
-                                )
-                                .clickable { onColorSelected(color) }
-                        )
-                    }
-                }
-                Spacer(modifier = Modifier.height(14.dp))
-            }
-        }
 
         // Primary Placement Button (Full Width, clear and prominent)
         Button(
